@@ -1,4 +1,4 @@
-package com.server.moabook.security.dto.member.kakaologin.response;
+package com.server.moabook.security.dto.response;
 
 import lombok.*;
 
