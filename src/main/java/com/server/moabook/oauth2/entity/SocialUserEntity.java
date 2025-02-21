@@ -18,7 +18,7 @@ import java.util.List;
 public class SocialUserEntity {
     @Id
     @Column(name = "user_id")
-    private Long userId;
+    private Long id;
 
     private String username;
 
