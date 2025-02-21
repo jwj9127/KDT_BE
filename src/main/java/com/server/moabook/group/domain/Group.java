@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "group")
+@Table(name = "Books")
 @Getter
 @Setter
 @Builder
@@ -19,6 +19,8 @@ public class Group {
     private Long groupId;
 
     private String name;
+
+    private String color;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
