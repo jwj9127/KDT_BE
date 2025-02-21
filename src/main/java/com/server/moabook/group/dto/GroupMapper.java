@@ -2,6 +2,7 @@ package com.server.moabook.group.dto;
 
 import com.server.moabook.group.domain.Group;
 import com.server.moabook.group.dto.request.CreateGroupRequestDto;
+import com.server.moabook.group.dto.request.UpdateGroupRequestDto;
 import com.server.moabook.group.dto.response.SelectGroupResponseDto;
 import com.server.moabook.oauth2.entity.SocialUserEntity;
 
@@ -22,6 +23,10 @@ public class GroupMapper {
                 .map(group -> new GroupDto(group.getGroupId(), group.getName()))
                 .collect(Collectors.toList());
         return new SelectGroupResponseDto(groupDtos);
+    }
+
+    public static void update(Group group, UpdateGroupRequestDto updateGroupRequestDto) {
+        group.setName(updateGroupRequestDto.name());
     }
 
 }
