@@ -1,16 +1,16 @@
 package com.server.moabook.group.domain;
 
+import com.server.moabook.oauth2.entity.SocialUserEntity;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.catalina.User;
-
-import java.util.Date;
 
 @Entity
 @Table(name = "group")
 @Getter
 @Setter
+@Builder
 public class Group {
 
     @Id
@@ -22,6 +22,6 @@ public class Group {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private SocialUserEntity user;
 
 }
