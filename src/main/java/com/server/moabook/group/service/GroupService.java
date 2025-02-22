@@ -41,7 +41,7 @@ public class GroupService {
     }
 
     public void updateGroup(Long userId, UpdateGroupRequestDto updateGroupRequestDto){
-        SocialUserEntity user = userRepository.findById(userId)
+        userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException(String.valueOf(ErrorMessage.USER_NOT_FOUND)));
         Group group = groupRepository.findById(updateGroupRequestDto.groupId())
                 .orElseThrow(() -> new NotFoundException(ErrorMessage.GROUP_NOT_FOUND));
