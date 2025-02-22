@@ -1,5 +1,6 @@
 package com.server.moabook.group.domain;
 
+import com.server.moabook.oauth2.entity.SocialUserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,6 @@ public class Group {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private SocialUserEntity user;
 
 }

@@ -35,7 +35,7 @@ public class GeneralMemberService {
         SocialUserEntity socialUserEntity = userRepository.findById(userInfo.id())
                 .orElseGet(() -> {
                     SocialUserEntity newGeneralMember = SocialUserEntity.builder()
-                            .id(userInfo.id())
+                            .userId(userInfo.id())
                             .username(userInfo.name())
                             .email(userInfo.email())
                             .role("ROLE_USER")
@@ -46,11 +46,11 @@ public class GeneralMemberService {
 
         // JWT 토큰 발급
         String jwtToken = jwtTokenProvider.issueAccessToken(
-                UserAuthentication.createUserAuthentication(socialUserEntity.getId())
+                UserAuthentication.createUserAuthentication(socialUserEntity.getUserId())
         );
 
         return SuccessLoginResponseDto.builder()
-                .id(socialUserEntity.getId())
+                .id(socialUserEntity.getUserId())
                 .name(socialUserEntity.getUsername())
                 .email(socialUserEntity.getEmail())
                 .profile_image_url(socialUserEntity.getProfile_image_url())
