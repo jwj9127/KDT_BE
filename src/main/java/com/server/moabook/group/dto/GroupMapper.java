@@ -14,13 +14,14 @@ public class GroupMapper {
     public static Group toEntity(CreateGroupRequestDto createGroupRequestDto, SocialUserEntity user){
         return Group.builder()
             .name(createGroupRequestDto.name())
+            .color(createGroupRequestDto.color())
             .user(user)
             .build();
     }
 
     public static SelectGroupResponseDto toDTO(List<Group> groups) {
         List<GroupDto> groupDtos = groups.stream()
-                .map(group -> new GroupDto(group.getGroupId(), group.getName()))
+                .map(group -> new GroupDto(group.getGroupId(), group.getName(), group.getColor()))
                 .collect(Collectors.toList());
         return new SelectGroupResponseDto(groupDtos);
     }
