@@ -2,6 +2,7 @@ package com.server.moabook.book.domain;
 
 import com.server.moabook.group.domain.Group;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +10,13 @@ import lombok.Setter;
 @Table(name = "book")
 @Getter
 @Setter
+@Builder
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
-    private Long bookId;
+    private Long id;
 
     private String name;
 
