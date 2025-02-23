@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 public enum SuccessMessage {
 
     SIGNIN_SUCCESS(HttpStatus.CREATED.value(),"로그인에 성공하였습니다."),
+    SELECT_USER_SUCCESS(HttpStatus.CREATED.value(),"유저 조회에 성공하였습니다."),
+    DELETE_USER_SUCCESS(HttpStatus.CREATED.value(),"유저 삭제에 성공하였습니다."),
+    DELETE_ALL_USER_SUCCESS(HttpStatus.CREATED.value(),"유저 기록 삭제에 성공하였습니다."),
     CREATE_GROUP_SUCCESS(HttpStatus.OK.value(),"그룹 생성을 성공하였습니다."),
     SELECT_GROUP_SUCCESS(HttpStatus.OK.value(),"그룹 조회를 성공하였습니다."),
     UPDATE_GROUP_SUCCESS(HttpStatus.OK.value(),"그룹 수정을 성공하였습니다."),
@@ -16,7 +19,11 @@ public enum SuccessMessage {
     CREATE_BOOK_SUCCESS(HttpStatus.OK.value(),"책 생성을 성공하였습니다."),
     SELECT_BOOK_SUCCESS(HttpStatus.OK.value(),"책 조회를 성공하였습니다."),
     UPDATE_BOOK_SUCCESS(HttpStatus.OK.value(),"책 수정을 성공하였습니다."),
-    DELETE_BOOK_SUCCESS(HttpStatus.OK.value(),"책 삭제를 성공하였습니다.");
+    DELETE_BOOK_SUCCESS(HttpStatus.OK.value(),"책 삭제를 성공하였습니다."),
+    CREATE_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 생성을 성공하였습니다."),
+    SAVE_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 저장을 성공하였습니다."),
+    SELECT_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 조회를 성공하였습니다."),
+    DELETE_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 삭제를 성공하였습니다.");
 
     private final int code;
     private final String message;
