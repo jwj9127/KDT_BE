@@ -27,7 +27,7 @@ public class Page {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @OneToMany(mappedBy = "page")
+    @OneToMany(mappedBy = "page", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Element> elements;
 
 }

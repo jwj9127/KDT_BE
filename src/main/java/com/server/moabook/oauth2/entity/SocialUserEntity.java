@@ -29,7 +29,7 @@ public class SocialUserEntity {
 
     private String profile_image_url;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Group> groups;
 
 }
