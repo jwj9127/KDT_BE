@@ -18,7 +18,6 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
     private Long id;
 
     private String name;
@@ -26,7 +25,7 @@ public class Book {
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "groupId")
     private Group group;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
