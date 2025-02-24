@@ -35,4 +35,10 @@ public class UserService {
         groupRepository.deleteAll(socialUserEntity.getGroups());
     }
 
+    public void updateReceivedEmail(Long userId, boolean check) {
+        SocialUserEntity socialUserEntity = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalStateException(String.valueOf(ErrorMessage.USER_NOT_FOUND)));
+        socialUserEntity.updateReceivedEmail(check);
+    }
+
 }

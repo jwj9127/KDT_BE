@@ -23,7 +23,8 @@ public enum SuccessMessage {
     CREATE_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 생성을 성공하였습니다."),
     SAVE_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 저장을 성공하였습니다."),
     SELECT_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 조회를 성공하였습니다."),
-    DELETE_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 삭제를 성공하였습니다.");
+    DELETE_PAGE_SUCCESS(HttpStatus.OK.value(),"페이지 삭제를 성공하였습니다."),
+    UPDATE_RECEIVED_EMAIL_SUCCESS(HttpStatus.OK.value(), "이메일 수신 동의 여부가 반영되었습니다."),;
 
     private final int code;
     private final String message;

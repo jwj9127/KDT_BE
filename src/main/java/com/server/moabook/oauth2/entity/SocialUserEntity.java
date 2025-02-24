@@ -43,8 +43,8 @@ public class SocialUserEntity {
         this.updated_at = LocalDateTime.now();
     }
 
-    public void updateReceivedEmail(){
-        this.received_email = true;
+    public void updateReceivedEmail(boolean check){
+        this.received_email = check;
     }
 
     public void updateSendedEmailTrue(){
