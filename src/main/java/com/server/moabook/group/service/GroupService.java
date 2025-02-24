@@ -15,8 +15,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -33,13 +31,9 @@ public class GroupService {
     }
 
     public SelectGroupResponseDto selectGroup(Long userId){
-        userRepository.findById(userId)
+        SocialUserEntity socialUserEntity = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException(String.valueOf(ErrorMessage.USER_NOT_FOUND)));
-        List<Group> groups = groupRepository.findByUser_Id(userId);
-        if(groups.isEmpty()){
-            throw new NotFoundException(ErrorMessage.GROUP_NOT_FOUND);
-        }
-        return GroupMapper.toDTO(groups);
+        return GroupMapper.toDTO(socialUserEntity);
     }
 
     public void updateGroup(Long userId, UpdateGroupRequestDto updateGroupRequestDto){

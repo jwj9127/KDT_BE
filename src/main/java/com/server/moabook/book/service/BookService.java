@@ -17,8 +17,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -40,11 +38,9 @@ public class BookService {
     public SelectBookResponseDto selectBook(Long userId, SelectBookRequestDto selectBookRequestDto){
         userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException(String.valueOf(ErrorMessage.USER_NOT_FOUND)));
-        List<Book> books = bookRepository.findByGroup_Id(selectBookRequestDto.groupId());
-        if(books.isEmpty()){
-            throw new NotFoundException(ErrorMessage.BOOK_NOT_FOUND);
-        }
-        return BookMapper.toDTO(books);
+        Group group = groupRepository.findById(selectBookRequestDto.groupId())
+            .orElseThrow(()-> new IllegalStateException(String.valueOf(ErrorMessage.GROUP_NOT_FOUND)));
+        return BookMapper.toDTO(group);
     }
 
     public void updateBook(Long userId, UpdateBookRequestDto updateBookRequestDto){
