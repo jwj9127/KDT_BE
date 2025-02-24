@@ -5,6 +5,7 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.mail.MailSendException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -28,6 +29,11 @@ public class MailService {
             // 메일을 받을 수신자 설정
             simpleMailMessage.setTo(userEmails);
 
+            if (userEmails.length == 0) {
+                log.info("메일을 발송할 대상이 없습니다.");
+                return;
+            }
+
             // 메일의 제목 설정
             simpleMailMessage.setSubject("[MoABook] 모아북에서 내가 저장한 내용을 정리하세요!");
 
@@ -39,7 +45,7 @@ public class MailService {
             log.info("메일 발송 성공!");
         } catch (Exception e) {
             log.info("메일 발송 실패!");
-            throw new RuntimeException(e);
+            throw new MailSendException("메일 발송 실패!");
         }
 
     }
