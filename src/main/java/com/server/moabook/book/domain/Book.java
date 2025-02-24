@@ -8,6 +8,8 @@ import lombok.Getter;
 
 import java.util.List;
 
+import java.util.List;
+
 @Entity
 @Table(name = "book")
 @Getter
@@ -33,5 +35,5 @@ public class Book {
     public void changeName(String newName) {
         this.name = newName;
     }
-
+  
 }
