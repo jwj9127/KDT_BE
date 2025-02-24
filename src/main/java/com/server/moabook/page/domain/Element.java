@@ -3,12 +3,10 @@ package com.server.moabook.page.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "element")
 @Getter
-@Setter
 @Builder
 public class Element {
 

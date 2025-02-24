@@ -26,7 +26,7 @@ public class BookMapper {
     }
 
     public static void update(Book book, UpdateBookRequestDto updateBookRequestDto) {
-        book.setName(updateBookRequestDto.name());
+        book.changeName(updateBookRequestDto.name());
     }
 
 }

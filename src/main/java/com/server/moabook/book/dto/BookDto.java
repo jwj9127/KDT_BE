@@ -1,7 +1,7 @@
 package com.server.moabook.book.dto;
 
 public record BookDto(
-        Long BookId,
+        Long bookId,
         String name
 ) {
 }

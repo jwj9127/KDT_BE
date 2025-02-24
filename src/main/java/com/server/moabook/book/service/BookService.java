@@ -13,6 +13,7 @@ import com.server.moabook.global.exception.message.ErrorMessage;
 import com.server.moabook.group.domain.Group;
 import com.server.moabook.group.repository.GroupRepository;
 import com.server.moabook.oauth2.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BookService {
 
     private final BookRepository bookRepository;

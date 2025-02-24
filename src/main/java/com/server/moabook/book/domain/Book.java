@@ -5,14 +5,14 @@ import com.server.moabook.page.domain.Page;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+
+import java.util.List;
 
 import java.util.List;
 
 @Entity
 @Table(name = "book")
 @Getter
-@Setter
 @Builder
 public class Book {
 
@@ -32,4 +32,8 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Page> pages;
 
+    public void changeName(String newName) {
+        this.name = newName;
+    }
+  
 }

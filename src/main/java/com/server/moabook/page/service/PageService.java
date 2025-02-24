@@ -12,6 +12,7 @@ import com.server.moabook.page.dto.PageMapper;
 import com.server.moabook.page.dto.response.SelectAllPageResponseDto;
 import com.server.moabook.page.dto.response.SelectPageResponseDto;
 import com.server.moabook.page.repository.PageRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PageService {
 
     private final PageRepository pageRepository;

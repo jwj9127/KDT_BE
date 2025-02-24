@@ -7,6 +7,7 @@ import com.server.moabook.group.repository.GroupRepository;
 import com.server.moabook.oauth2.entity.SocialUserEntity;
 import com.server.moabook.oauth2.repository.UserRepository;
 import com.server.moabook.user.dto.response.SelectUserResponseDto;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;

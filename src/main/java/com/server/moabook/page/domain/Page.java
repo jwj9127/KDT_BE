@@ -4,14 +4,12 @@ import com.server.moabook.book.domain.Book;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "page")
 @Getter
-@Setter
 @Builder
 public class Page {
 

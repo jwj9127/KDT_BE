@@ -6,14 +6,14 @@ import com.server.moabook.oauth2.entity.SocialUserEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+
+import java.util.List;
 
 import java.util.List;
 
 @Entity
 @Table(name = "Books")
 @Getter
-@Setter
 @Builder
 public class Group {
 
@@ -32,5 +32,9 @@ public class Group {
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
+
+    public void changeName(String newName) {
+        this.name = newName;
+    }
 
 }

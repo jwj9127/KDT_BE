@@ -27,7 +27,7 @@ public class GroupMapper {
     }
 
     public static void update(Group group, UpdateGroupRequestDto updateGroupRequestDto) {
-        group.setName(updateGroupRequestDto.name());
+        group.changeName(updateGroupRequestDto.name());
     }
 
 }
