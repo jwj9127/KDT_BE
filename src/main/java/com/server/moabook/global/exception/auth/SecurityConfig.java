@@ -1,5 +1,6 @@
 package com.server.moabook.global.exception.auth;
 
+import com.server.moabook.security.constant.Constant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,17 +21,6 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomJwtAuthenticationEntryPoint customJwtAuthenticationEntryPoint;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
-    private final RequestHeaderLoggingFilter requestHeaderLoggingFilter;
-
-    private static final String[] AUTH_WHITE_LIST = {
-            "/oauth/**",
-            "/api/health",
-            "/api/callback",
-            "/swagger-ui/**",
-            "/v3/api-docs/**",
-            "/api/login/kakao",
-            "/ws/chat/**"
-    };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -39,14 +29,17 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .requestCache(RequestCacheConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
+
                 .exceptionHandling(exception -> {
                     exception.authenticationEntryPoint(customJwtAuthenticationEntryPoint);
                     exception.accessDeniedHandler(customAccessDeniedHandler);
                 })
+
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(AUTH_WHITE_LIST).permitAll();
-                    auth.anyRequest().permitAll();
+                    auth.requestMatchers(Constant.AUTH_WHITE_LIST).permitAll();
+                    auth.anyRequest().authenticated();
                 })
+
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

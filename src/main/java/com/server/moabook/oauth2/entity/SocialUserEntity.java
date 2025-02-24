@@ -21,20 +21,29 @@ public class SocialUserEntity {
     @Column(name = "userId")
     private Long id;
 
+    @Column(name = "username")
     private String username;
 
     @Column(unique = true)
     private String email;
 
+    @Column(name = "role")
     private String role;
 
+    @Column(name = "profile_image_url")
     private String profile_image_url;
 
+    @Column(name = "updated_at")
     private LocalDateTime updated_at;
 
-    private Boolean received_email;
+    @Column(name = "received_email")
+    private boolean received_email;
 
-    private Boolean sended_email;
+    @Column(name = "sended_email")
+    private boolean sended_email;
+
+    @Column(name = "refresh_token")
+    private String refreshToken;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Group> groups;
@@ -57,5 +66,9 @@ public class SocialUserEntity {
 
     public void updateEmail(String email){
         this.email = email;
+    }
+
+    public void updateRefreshToken(String refreshToken){
+        this.refreshToken = refreshToken;
     }
 }
