@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<SocialUserEntity, Long> {
     SocialUserEntity findByUsername(String username);
     Optional<SocialUserEntity> findByEmail(String email);
 
-    @Query("SELECT u.email FROM SocialUserEntity u WHERE u.updated_at < :minusOneMonthAgoDateTime")
+    @Query("SELECT u.email FROM SocialUserEntity u WHERE u.updated_at < :minusOneMonthAgoDateTime AND u.received_email = true AND u.sended_email = false")
     List<String> findAllByExpiredUsersEmail(LocalDateTime minusOneMonthAgoDateTime);
 }

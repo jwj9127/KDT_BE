@@ -32,10 +32,26 @@ public class SocialUserEntity {
 
     private LocalDateTime updated_at;
 
+    private Boolean received_email;
+
+    private Boolean sended_email;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Group> groups;
 
     public void updateUserUpdateTime(){
         this.updated_at = LocalDateTime.now();
+    }
+
+    public void updateReceivedEmail(){
+        this.received_email = true;
+    }
+
+    public void updateSendedEmailTrue(){
+        this.sended_email = true;
+    }
+
+    public void updateSendedEmailFalse(){
+        this.sended_email = false;
     }
 }

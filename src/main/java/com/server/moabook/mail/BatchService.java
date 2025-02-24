@@ -1,5 +1,6 @@
 package com.server.moabook.mail;
 
+import com.server.moabook.oauth2.entity.SocialUserEntity;
 import com.server.moabook.oauth2.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,10 @@ public class BatchService {
 
         LocalDateTime oneMonthAgoDateTime = LocalDateTime.now().minusMonths(1);
         String[] userEmailList = userRepository.findAllByExpiredUsersEmail(oneMonthAgoDateTime).toArray(new String[0]);
-
+        //이메일을 발송했다면 해당 사용자들의 sended_email을 true로 변경
+        for (String email : userEmailList) {
+            userRepository.findByEmail(email).ifPresent(SocialUserEntity::updateSendedEmailTrue);
+        }
         mailService.sendSimpleMailMessage(userEmailList);
     }
 }

@@ -46,7 +46,10 @@ public class GeneralMemberService {
                     return userRepository.save(newGeneralMember);
                 });
 
+        //로그인 시 사용자 사용시간 업데이트
         socialUserEntity.updateUserUpdateTime();
+        //로그인 시 사용자가 나중에 다시 접속이 오래 이어지지 않았을 때 다시 이메일을 받을 수 있게 설정
+        socialUserEntity.updateSendedEmailFalse();
 
         // JWT 토큰 발급
         String jwtToken = jwtTokenProvider.issueAccessToken(
