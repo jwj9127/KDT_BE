@@ -12,7 +12,6 @@ public class Element {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "element_id")
     private Long elementId;
 
     @Enumerated(EnumType.STRING)
@@ -25,7 +24,7 @@ public class Element {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "page_id")
+    @JoinColumn(name = "pageId")
     private Page page;
 
 }

@@ -37,16 +37,16 @@ public class PageMapper {
                 .build();
     }
 
-    public static SelectPageResponseDto toDTO(List<Element> elements) {
-        List<ElementDto> elementDtos = elements.stream()
+    public static SelectPageResponseDto toDTO(Page page) {
+        List<ElementDto> elementDtos = page.getElements().stream()
                 .map(element ->
                         new ElementDto(element.getElementId(), element.getElementType(), element.getXPosition(), element.getYPosition(), element.getContent()))
                 .collect(Collectors.toList());
         return new SelectPageResponseDto(elementDtos);
     }
 
-    public static SelectAllPageResponseDto AlltoDTO(List<Page> pages) {
-        List<PageDto> pageDtos = pages.stream().map(page -> {
+    public static SelectAllPageResponseDto AlltoDTO(Book book) {
+        List<PageDto> pageDtos = book.getPages().stream().map(page -> {
             List<ElementDto> elementDtos = page.getElements().stream()
                     .map(element -> new ElementDto(
                             element.getElementId(),

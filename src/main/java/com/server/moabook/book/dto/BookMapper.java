@@ -18,8 +18,8 @@ public class BookMapper {
                 .build();
     }
 
-    public static SelectBookResponseDto toDTO(List<Book> books) {
-        List<BookDto> bookDtos = books.stream()
+    public static SelectBookResponseDto toDTO(Group group) {
+        List<BookDto> bookDtos = group.getBooks().stream()
                 .map(book -> new BookDto(book.getId(), book.getName()))
                 .collect(Collectors.toList());
         return new SelectBookResponseDto(bookDtos);

@@ -19,8 +19,8 @@ public class GroupMapper {
             .build();
     }
 
-    public static SelectGroupResponseDto toDTO(List<Group> groups) {
-        List<GroupDto> groupDtos = groups.stream()
+    public static SelectGroupResponseDto toDTO(SocialUserEntity socialUserEntity) {
+        List<GroupDto> groupDtos = socialUserEntity.getGroups().stream()
                 .map(group -> new GroupDto(group.getGroupId(), group.getName(), group.getColor()))
                 .collect(Collectors.toList());
         return new SelectGroupResponseDto(groupDtos);

@@ -23,8 +23,8 @@ import java.util.List;
 @Transactional
 public class PageService {
 
-    private final PageRepository pageRepository;
     private final BookRepository bookRepository;
+    private final PageRepository pageRepository;
     private final UserRepository userRepository;
 
     public void createPage(Long userId, CreatePageRequestDto createPageRequestDto){
@@ -48,24 +48,22 @@ public class PageService {
     public SelectPageResponseDto selectPage(Long userId, SelectPageRequestDto selectPageRequestDto){
         userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException(String.valueOf(ErrorMessage.USER_NOT_FOUND)));
-        List<Element> elements = pageRepository.findByBook_IdAndPageNumber(
+        Page page = pageRepository.findByBook_IdAndPageNumber(
                 selectPageRequestDto.bookId(),
                 selectPageRequestDto.pageNumber()
         );
-        if(elements.isEmpty()){
+        if(page.getClass() == null){
             throw new NotFoundException(ErrorMessage.PAGE_NOT_FOUND);
         }
-        return PageMapper.toDTO(elements);
+        return PageMapper.toDTO(page);
     }
 
     public SelectAllPageResponseDto selectAllPage(Long userId, SelectAllPageRequestDto selectAllPageRequestDto){
         userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException(String.valueOf(ErrorMessage.USER_NOT_FOUND)));
-        List<Page> pages = pageRepository.findAllByBook_Id(selectAllPageRequestDto.bookId());
-        if(pages.isEmpty()){
-            throw new NotFoundException(ErrorMessage.PAGE_NOT_FOUND);
-        }
-        return PageMapper.AlltoDTO(pages);
+        Book book = bookRepository.findById(selectAllPageRequestDto.bookId())
+            .orElseThrow(()-> new IllegalStateException(String.valueOf(ErrorMessage.BOOK_NOT_FOUND)));
+        return PageMapper.AlltoDTO(book);
     }
 
     public void deletePage(Long userId, DeletePageRequestDto deletePageRequestDto){
