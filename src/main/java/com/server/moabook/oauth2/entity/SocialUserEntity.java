@@ -54,4 +54,8 @@ public class SocialUserEntity {
     public void updateSendedEmailFalse(){
         this.sended_email = false;
     }
+
+    public void updateEmail(String email){
+        this.email = email;
+    }
 }
