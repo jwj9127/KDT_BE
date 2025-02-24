@@ -2,6 +2,7 @@ package com.server.moabook.group.domain;
 
 import com.server.moabook.book.domain.Book;
 import com.server.moabook.oauth2.entity.SocialUserEntity;
+
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
