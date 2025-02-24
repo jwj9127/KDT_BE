@@ -1,17 +1,20 @@
 package com.server.moabook.group.domain;
 
+import com.server.moabook.book.domain.Book;
 import com.server.moabook.oauth2.entity.SocialUserEntity;
+
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.catalina.User;
 
-import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "group")
+@Table(name = "Books")
 @Getter
 @Setter
+@Builder
 public class Group {
 
     @Id
@@ -21,8 +24,13 @@ public class Group {
 
     private String name;
 
+    private String color;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private SocialUserEntity user;
+
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> books;
 
 }

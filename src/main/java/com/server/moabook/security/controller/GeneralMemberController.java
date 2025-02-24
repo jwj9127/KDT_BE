@@ -3,7 +3,7 @@ package com.server.moabook.security.controller;
 import com.server.moabook.global.exception.dto.SuccessStatusResponse;
 import com.server.moabook.global.exception.dto.oauth.KakaoUserInfoRequestDto;
 import com.server.moabook.global.exception.message.SuccessMessage;
-import com.server.moabook.security.dto.member.kakaologin.response.SuccessLoginResponseDto;
+import com.server.moabook.security.dto.response.SuccessLoginResponseDto;
 import com.server.moabook.security.service.GeneralMemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

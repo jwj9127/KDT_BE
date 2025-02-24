@@ -5,7 +5,7 @@ import com.server.moabook.global.jwt.JwtTokenProvider;
 import com.server.moabook.global.jwt.UserAuthentication;
 import com.server.moabook.oauth2.entity.SocialUserEntity;
 import com.server.moabook.oauth2.repository.UserRepository;
-import com.server.moabook.security.dto.member.kakaologin.response.SuccessLoginResponseDto;
+import com.server.moabook.security.dto.response.SuccessLoginResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
