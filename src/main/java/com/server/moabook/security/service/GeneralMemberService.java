@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -29,7 +31,7 @@ public class GeneralMemberService {
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
-    // 사용자 정보 가져오기 - 이메일, 닉네임, 프로필 사진, 여행 등급
+    // 사용자 정보 가져오기 - 이메일, 닉네임, 프로필 사진
     public SuccessLoginResponseDto findUserWithReact(KakaoUserInfoRequestDto userInfo) {
 
         SocialUserEntity socialUserEntity = userRepository.findById(userInfo.id())
@@ -43,6 +45,8 @@ public class GeneralMemberService {
                             .build();
                     return userRepository.save(newGeneralMember);
                 });
+
+        socialUserEntity.updateUserUpdateTime();
 
         // JWT 토큰 발급
         String jwtToken = jwtTokenProvider.issueAccessToken(

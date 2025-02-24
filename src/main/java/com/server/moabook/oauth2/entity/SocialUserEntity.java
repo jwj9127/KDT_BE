@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -29,7 +30,12 @@ public class SocialUserEntity {
 
     private String profile_image_url;
 
+    private LocalDateTime updated_at;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Group> groups;
 
+    public void updateUserUpdateTime(){
+        this.updated_at = LocalDateTime.now();
+    }
 }
