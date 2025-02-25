@@ -27,4 +27,12 @@ public class Element {
     @JoinColumn(name = "pageId")
     private Page page;
 
+    public void updateContent(String newContent) {
+        this.content = newContent;
+    }
+
+    public void updatePosition(String newXPosition, String newYPosition) {
+        this.xPosition = newXPosition;
+        this.yPosition = newYPosition;
+    }
 }
