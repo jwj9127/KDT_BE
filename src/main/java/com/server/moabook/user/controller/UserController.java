@@ -58,4 +58,21 @@ public class UserController {
         );
     }
 
+    @PatchMapping
+    public ResponseEntity<SuccessStatusResponse<Void>> updateReceivedEmail(
+            @RequestHeader("Authorization") String token,
+            @RequestParam(value = "user_email", required = false) String email,
+            @RequestParam("is_received_email") boolean checkReceivedEmail) {
+
+        Long userId = jwtTokenProvider.getUserFromJwt(token);
+
+        userService.updateReceivedEmail(userId, email, checkReceivedEmail);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                SuccessStatusResponse.of(
+                        SuccessMessage.UPDATE_RECEIVED_EMAIL_SUCCESS, null
+                )
+        );
+    }
+
 }

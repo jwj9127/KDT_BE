@@ -8,6 +8,7 @@ public record SuccessLoginResponseDto (
         String name,
         String email,
         String profile_image_url,
-        String jwtToken
+        JwtTokenDto jwtToken,
+        boolean received_email
 ){
 }
