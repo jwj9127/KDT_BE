@@ -9,5 +9,6 @@ public class Constant {
             "/swagger-ui/**",
             "/v3/api-docs/**",
             "/api/login/kakao",
+            "/h2-console/**",
     };
 }
