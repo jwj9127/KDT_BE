@@ -29,7 +29,7 @@ public enum SuccessMessage {
     SELECT_TEXT_SUCCESS(HttpStatus.OK.value(), "텍스트 조회에 성공하였습니다."),
     UPDATE_TEXT_SUCCESS(HttpStatus.OK.value(), "텍스트 수정에 성공하였습니다."),
     DELETE_TEXT_SUCCESS(HttpStatus.OK.value(), "텍스트 삭제에 성공하였습니다."),
-    CREATE_URL_SUCCESS(HttpStatus.OK.value(), "URL 생성에 성공하였습니다.");
+    CREATE_URL_SUCCESS(HttpStatus.OK.value(), "URL 생성에 성공하였습니다."),
     HEALTH_CHECK_SUCCESS(HttpStatus.OK.value(), "서버 정상 작동 중입니다.");
 
 
