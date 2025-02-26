@@ -16,8 +16,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@DynamicUpdate
-@Table(name = "user")
+@Table(name = "users")
 public class SocialUserEntity {
     @Id
     @Column(name = "userId")
