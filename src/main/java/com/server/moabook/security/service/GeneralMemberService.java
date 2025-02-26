@@ -37,7 +37,7 @@ public class GeneralMemberService {
         return processKakaoUserLogin(kakaoUserInfoDto);
     }
 
-    private String refineToken(String accessToken) {
+    public static String refineToken(String accessToken) {
         return accessToken.startsWith("Bearer")
                 ? accessToken.substring(6)
                 : accessToken;

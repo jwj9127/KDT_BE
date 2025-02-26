@@ -50,10 +50,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter  { // 요청�
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
         try {
             final String token = getJwtFromRequest(request);
-            log.info("token:" + token);
             if (jwtTokenProvider.validateToken(token) == JwtValidationType.VALID_JWT) { // 추출한 토큰의 정보가 VALID_JWT일 경우 사용자 정보 추출
+                log.info("token:" + token);
                 Long memberId = jwtTokenProvider.getUserFromJwt(token);
 
+                log.info("memberId:" + memberId);
                 UserAuthentication authentication = UserAuthentication.createUserAuthentication(memberId);
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 // 추출한 UserId 기반 authentication 객체 생성

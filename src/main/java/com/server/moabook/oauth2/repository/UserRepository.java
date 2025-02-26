@@ -2,7 +2,9 @@ package com.server.moabook.oauth2.repository;
 
 import com.server.moabook.oauth2.entity.SocialUserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,4 +19,9 @@ public interface UserRepository extends JpaRepository<SocialUserEntity, Long> {
 
     @Query("SELECT u FROM SocialUserEntity u WHERE u.id = :id")
     SocialUserEntity findByKakaoUserId(Long id);
+
+
+    @Modifying
+    @Query("UPDATE SocialUserEntity u SET u.sended_email = true WHERE u.email IN :emails")
+    int updateSendedEmailByEmails(@Param("emails") List<String> emails);
 }

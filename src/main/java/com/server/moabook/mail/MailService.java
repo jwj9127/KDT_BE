@@ -29,11 +29,6 @@ public class MailService {
             // 메일을 받을 수신자 설정
             simpleMailMessage.setTo(userEmails);
 
-            if (userEmails.length == 0) {
-                log.info("메일을 발송할 대상이 없습니다.");
-                return;
-            }
-
             // 메일의 제목 설정
             simpleMailMessage.setSubject("[MoABook] 모아북에서 내가 저장한 내용을 정리하세요!");
 
