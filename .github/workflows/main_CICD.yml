@@ -55,4 +55,5 @@ jobs:
 
             sudo docker run -d --name moabook-server \
             -p 8080:8080 \
+            --network moabook_network \
             5hseok/moabook-server:0.0.1
