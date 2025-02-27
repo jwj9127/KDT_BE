@@ -64,7 +64,7 @@ public class PageService {
         return PageMapper.toDTO(page);
     }
 
-    public SelectAllPageResponseDto selectAllPage(Long userId, Long bookId){
+    public SelectAllPageResponseDto selectAllPage(Long userId, @NotNull(message = "책의 아이디는 비어있을 수 없습니다.") Long bookId){
         userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException(String.valueOf(ErrorMessage.USER_NOT_FOUND)));
         Book book = bookRepository.findById(bookId)

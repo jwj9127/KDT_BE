@@ -96,7 +96,7 @@ public class PageController {
     @GetMapping("/all/{bookId}")
     public ResponseEntity<SuccessStatusResponse<SelectAllPageResponseDto>> selectAll(
             @RequestHeader("Authorization") String token,
-            @Valid @RequestBody Long bookId) {
+            @Valid @PathVariable Long bookId) {
 
         Long userId = jwtTokenProvider.getUserFromJwt(token);
         SelectAllPageResponseDto selectAllPageResponseDto = pageService.selectAllPage(userId, bookId);
