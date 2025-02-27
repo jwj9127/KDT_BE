@@ -7,6 +7,7 @@ import com.server.moabook.page.dto.request.TextCreateRequest;
 import com.server.moabook.page.dto.request.TextUpdateRequest;
 import com.server.moabook.page.dto.response.TextResponse;
 import com.server.moabook.page.service.TextService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class TextController {
 
     // 텍스트 생성
     @PostMapping
+    @Operation(summary = "텍스트 생성", description = "텍스트 생성")
     public ResponseEntity<SuccessStatusResponse<TextResponse>> createText(
             @RequestHeader("Authorization") String token,
             @PathVariable Long pageId,
@@ -39,6 +41,7 @@ public class TextController {
 
     // 텍스트 조회
     @GetMapping("/{elementId}")
+    @Operation(summary = "텍스트 조회",description = "텍스트 조회")
     public ResponseEntity<SuccessStatusResponse<TextResponse>> getText(
             @RequestHeader("Authorization") String token,
             @PathVariable Long pageId,
@@ -53,6 +56,7 @@ public class TextController {
 
     // 텍스트 수정
     @PutMapping("/{elementId}")
+    @Operation(summary = "텍스트 수정",description = "텍스트 수정")
     public ResponseEntity<SuccessStatusResponse<TextResponse>> updateText(
             @RequestHeader("Authorization") String token,
             @PathVariable Long pageId,
@@ -68,6 +72,7 @@ public class TextController {
 
     // 텍스트 삭제
     @DeleteMapping("/{elementId}")
+    @Operation(summary = "텍스트 삭제",description = "텍스트 삭제")
     public ResponseEntity<SuccessStatusResponse<Void>> deleteText(
             @RequestHeader("Authorization") String token,
             @PathVariable Long pageId,
@@ -82,6 +87,7 @@ public class TextController {
 
     // 페이지에 있는 모든 텍스트 조회
     @GetMapping
+    @Operation(summary = "모든 텍스트 조회",description = "모든 텍스트 조회")
     public ResponseEntity<SuccessStatusResponse<List<TextResponse>>> getAllTexts(
             @RequestHeader("Authorization") String token,
             @PathVariable Long pageId
