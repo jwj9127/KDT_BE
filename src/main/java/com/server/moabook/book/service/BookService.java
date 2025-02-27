@@ -35,10 +35,10 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public SelectBookResponseDto selectBook(Long userId, SelectBookRequestDto selectBookRequestDto){
+    public SelectBookResponseDto selectBook(Long userId, Long groupId){
         userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException(String.valueOf(ErrorMessage.USER_NOT_FOUND)));
-        Group group = groupRepository.findById(selectBookRequestDto.groupId())
+        Group group = groupRepository.findById(groupId)
             .orElseThrow(()-> new IllegalStateException(String.valueOf(ErrorMessage.GROUP_NOT_FOUND)));
         return BookMapper.toDTO(group);
     }

@@ -57,10 +57,10 @@ public class BookController {
     })
     @GetMapping
     public ResponseEntity<SuccessStatusResponse<SelectBookResponseDto>> select(@RequestHeader("Authorization") String token,
-                                                                                    @Valid @RequestBody SelectBookRequestDto selectBookRequestDto){
+                                                                                    @Valid @PathVariable("groupId") Long groupId){
 
         Long userId = jwtTokenProvider.getUserFromJwt(token);
-        SelectBookResponseDto selectBookResponseDto = bookService.selectBook(userId, selectBookRequestDto);
+        SelectBookResponseDto selectBookResponseDto = bookService.selectBook(userId, groupId);
 
         return ResponseEntity.status(HttpStatus.OK).body(
                 SuccessStatusResponse.of(
