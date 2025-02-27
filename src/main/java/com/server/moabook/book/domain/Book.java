@@ -3,8 +3,7 @@ package com.server.moabook.book.domain;
 import com.server.moabook.group.domain.Group;
 import com.server.moabook.page.domain.Page;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,6 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "book")
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Builder
 public class Book {
 

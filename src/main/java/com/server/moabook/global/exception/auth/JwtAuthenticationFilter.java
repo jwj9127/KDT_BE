@@ -5,6 +5,7 @@ import com.server.moabook.global.exception.message.ErrorMessage;
 import com.server.moabook.global.jwt.JwtTokenProvider;
 import com.server.moabook.global.jwt.JwtValidationType;
 import com.server.moabook.global.jwt.UserAuthentication;
+import com.server.moabook.security.constant.Constant;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,11 +17,13 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-
+import java.util.Arrays;
+import java.util.List;
 
 
 // 요청에서 Jwt를 검증하는 커스텀 필터 클래스
@@ -31,16 +34,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter  { // 요청�
 
     private final JwtTokenProvider jwtTokenProvider;
 
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+
+        // 제외할 URL 리스트 중 하나라도 포함되면 필터 실행 안 함
+        return Arrays.stream(Constant.AUTH_WHITE_LIST)
+                .anyMatch(pattern -> new AntPathMatcher().match(pattern, path));
+    }
+
     @Override
     protected void doFilterInternal(@NotNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
         try {
             final String token = getJwtFromRequest(request);
-            log.info("token:" + token);
             if (jwtTokenProvider.validateToken(token) == JwtValidationType.VALID_JWT) { // 추출한 토큰의 정보가 VALID_JWT일 경우 사용자 정보 추출
+                log.info("token:" + token);
                 Long memberId = jwtTokenProvider.getUserFromJwt(token);
 
+                log.info("memberId:" + memberId);
                 UserAuthentication authentication = UserAuthentication.createUserAuthentication(memberId);
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 // 추출한 UserId 기반 authentication 객체 생성

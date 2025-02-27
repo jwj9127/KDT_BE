@@ -2,14 +2,15 @@ package com.server.moabook.page.domain;
 
 import com.server.moabook.book.domain.Book;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "page")
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Builder
 public class Page {
 

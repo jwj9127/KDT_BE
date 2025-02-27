@@ -16,7 +16,7 @@ jobs:
       - name: Set YAML file
         run: |
           mkdir -p ./src/main/resources
-          echo "${{ secrets.APPLICATION_PROD_YML }}" | base64 --decode > ./src/main/resources/application-prod.yml
+          echo "${{ secrets.APPLICATION_PROD_YML }}" | base64 --decode > ./src/main/resources/application.yml
           find src
 
       # 2. Docker Hub 로그인
@@ -55,4 +55,5 @@ jobs:
 
             sudo docker run -d --name moabook-server \
             -p 8080:8080 \
+            --network moabook_network \
             5hseok/moabook-server:0.0.1
