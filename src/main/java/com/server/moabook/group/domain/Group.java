@@ -4,8 +4,7 @@ import com.server.moabook.book.domain.Book;
 import com.server.moabook.oauth2.entity.SocialUserEntity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,6 +13,8 @@ import java.util.List;
 @Entity
 @Table(name = "Books")
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Builder
 public class Group {
 

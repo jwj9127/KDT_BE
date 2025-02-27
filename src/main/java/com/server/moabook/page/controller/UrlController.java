@@ -6,6 +6,7 @@ import com.server.moabook.global.jwt.JwtTokenProvider;
 import com.server.moabook.page.dto.request.UrlCreateRequest;
 import com.server.moabook.page.dto.response.UrlResponse;
 import com.server.moabook.page.service.UrlService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class UrlController {
     private final JwtTokenProvider jwtTokenProvider;
 
     @PostMapping
+    @Operation(summary = "URL 생성")
     public ResponseEntity<SuccessStatusResponse<UrlResponse>> createUrlElement(
             @RequestHeader("Authorization") String token,
             @PathVariable Long pageId,
