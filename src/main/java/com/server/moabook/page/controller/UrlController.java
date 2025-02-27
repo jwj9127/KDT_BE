@@ -31,7 +31,7 @@ public class UrlController {
         Long userId = jwtTokenProvider.getUserFromJwt(token);
         UrlResponse response = urlService.createUrlElement(userId, pageId, request);
         return ResponseEntity.ok(
-                SuccessStatusResponse.of(SuccessMessage.CREATE_BOOK_SUCCESS, response)
+                SuccessStatusResponse.of(SuccessMessage.CREATE_URL_SUCCESS, response)
         );
     }
 
