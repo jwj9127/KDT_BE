@@ -2,7 +2,6 @@ package com.server.moabook.book.controller;
 
 import com.server.moabook.book.dto.request.CreateBookRequestDto;
 import com.server.moabook.book.dto.request.DeleteBookRequestDto;
-import com.server.moabook.book.dto.request.SelectBookRequestDto;
 import com.server.moabook.book.dto.request.UpdateBookRequestDto;
 import com.server.moabook.book.dto.response.SelectBookResponseDto;
 import com.server.moabook.book.service.BookService;
@@ -36,7 +35,7 @@ public class BookController {
         );
     }
 
-    @GetMapping
+    @GetMapping("/{groupId}")
     public ResponseEntity<SuccessStatusResponse<SelectBookResponseDto>> select(@RequestHeader("Authorization") String token,
                                                                                     @Valid @PathVariable("groupId") Long groupId){
 
