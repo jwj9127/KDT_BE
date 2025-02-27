@@ -7,6 +7,8 @@ import com.server.moabook.page.dto.request.UrlCreateRequest;
 import com.server.moabook.page.dto.response.UrlResponse;
 import com.server.moabook.page.service.UrlService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +23,14 @@ public class UrlController {
     private final UrlService urlService;
     private final JwtTokenProvider jwtTokenProvider;
 
+    @Operation(summary = "URL 생성", description = "URL을 생성합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "URL 생성 성공"),
+            @ApiResponse(responseCode = "400", description = "잘못된 요청"),
+            @ApiResponse(responseCode = "401", description = "인증 실패"),
+            @ApiResponse(responseCode = "500", description = "서버 오류")
+    })
     @PostMapping
-    @Operation(summary = "URL 생성")
     public ResponseEntity<SuccessStatusResponse<UrlResponse>> createUrlElement(
             @RequestHeader("Authorization") String token,
             @PathVariable Long pageId,
